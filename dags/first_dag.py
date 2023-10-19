@@ -129,8 +129,10 @@ with models.DAG(
     )
 
     this_is_the_end = python_operator.PythonOperator(
-        task_id="goodbye",
+        task_id="goodbye", 
+        provide_context=True,
         python_callable=greeting,
+        op_kwargs={'name': '{{ airflow-variables-maurice-secret-01 }}'},
     )
 
 
